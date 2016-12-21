@@ -1,6 +1,7 @@
 const Post = require('./models/index.js')
 
 module.exports = function(app){
+
   app.post('/posts',function(req,res){
     const post = new Post(req.body)
     // post.title = req.body.title;
@@ -12,12 +13,16 @@ module.exports = function(app){
   app.get('/posts',function(req,res){
     Post.find().exec(function(err, title) {
       if(err) return console.log(err);
-      res.json({title:title})
+      res.json({posts:title})
     });
   })
 
   app.get('/posts/:id',function(req,res){
-    res.send('read one post')
+    Post.findById(req.params.id).exec(function(err,data){
+      if(err) return console.log(err);
+      res.json({content:data})
+    })
+
   })
   app.put('/posts/:id',function(req,res){
     res.send('update a post')
