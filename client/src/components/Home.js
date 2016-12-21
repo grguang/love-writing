@@ -20,7 +20,7 @@ class Home extends Component {
       <div className="post-card" key={index}><Link to={`posts/${item._id}`}>{item.title}</Link></div>)
     return(
       <div>
-        <div><Link to="/new">编辑文章</Link></div>
+        <div><Link to="/new" className="new-post">New Post</Link></div>
         <h3>{title}</h3>
       </div>
     )

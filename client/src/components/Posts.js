@@ -14,9 +14,9 @@ class Posts extends React.Component {
   }
   render () {
     return(
-      <div>
-        {this.state.data.title}<br />
-        {this.state.data.content}
+      <div className='post-wrapper'>
+        <div className='title'>{this.state.data.title}</div>
+        <div className='content'>{this.state.data.content}</div>        
       </div>
     )
   }

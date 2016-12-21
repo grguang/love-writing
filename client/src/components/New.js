@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router'
 
 class New extends React.Component {
   handleSubmit(e){
@@ -14,11 +15,20 @@ class New extends React.Component {
   }
   render () {
     return(
-      <div>
+      <div className="form-wrapper">
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <input type="text" ref="title" name='title' />
-          <input type="text" ref="content" name='content' />
-          <input type="submit" />
+          <div className="field">
+            <label className="label">标题</label>
+            <input type='text' name="title" ref='title' />
+          </div>
+          <div className="field">
+            <label className="label">内容</label>
+            <input type='text' name="content" ref='content' />
+          </div>
+          <div className="actions">
+            <button type='submit' className="button" key='2'>提交</button>
+            <Link to='/' className="cancel">取消</Link>
+          </div>
         </form>
       </div>
     )

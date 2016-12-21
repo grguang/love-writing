@@ -21543,7 +21543,7 @@
 
 	var _Posts2 = _interopRequireDefault(_Posts);
 
-	var _New = __webpack_require__(268);
+	var _New = __webpack_require__(263);
 
 	var _New2 = _interopRequireDefault(_New);
 
@@ -26899,8 +26899,8 @@
 	          null,
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/new' },
-	            '\u7F16\u8F91\u6587\u7AE0'
+	            { to: '/new', className: 'new-post' },
+	            'New Post'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -28399,10 +28399,17 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        null,
-	        this.state.data.title,
-	        _react2.default.createElement('br', null),
-	        this.state.data.content
+	        { className: 'post-wrapper' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'title' },
+	          this.state.data.title
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'content' },
+	          this.state.data.content
+	        )
 	      );
 	    }
 	  }]);
@@ -28413,7 +28420,110 @@
 	exports.default = Posts;
 
 /***/ },
-/* 263 */,
+/* 263 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _axios = __webpack_require__(237);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _reactRouter = __webpack_require__(179);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var New = function (_React$Component) {
+	  _inherits(New, _React$Component);
+
+	  function New() {
+	    _classCallCheck(this, New);
+
+	    return _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).apply(this, arguments));
+	  }
+
+	  _createClass(New, [{
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      if (this.refs.title.value == '' || this.refs.content.value == '') {
+	        alert('输入内容不能为空');
+	      } else {
+	        _axios2.default.post('http://localhost:4000/posts', { title: this.refs.title.value, content: this.refs.content.value });
+	        this.refs.title.value = '';
+	        this.refs.content.value = '';
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'form-wrapper' },
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: this.handleSubmit.bind(this) },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'field' },
+	            _react2.default.createElement(
+	              'label',
+	              { className: 'label' },
+	              '\u6807\u9898'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', name: 'title', ref: 'title' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'field' },
+	            _react2.default.createElement(
+	              'label',
+	              { className: 'label' },
+	              '\u5185\u5BB9'
+	            ),
+	            _react2.default.createElement('input', { type: 'text', name: 'content', ref: 'content' })
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'actions' },
+	            _react2.default.createElement(
+	              'button',
+	              { type: 'submit', className: 'button', key: '2' },
+	              '\u63D0\u4EA4'
+	            ),
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/', className: 'cancel' },
+	              '\u53D6\u6D88'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return New;
+	}(_react2.default.Component);
+
+	exports.default = New;
+
+/***/ },
 /* 264 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -28448,7 +28558,7 @@
 
 
 	// module
-	exports.push([module.id, "*{\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n.header{\n  width: 100%;\n  height: 80px;\n  text-align: center;\n  background-color: #00bcd4;\n  line-height: 80px;\n  font-size: 1.8em;\n}\n.header a{\n  text-decoration: none;\n  color: #fff;\n}\n.post-card{\n  width: 100%;\n  max-width: 600px;\n  margin: 0 auto;\n  margin-top: 20px;\n  padding: 10px;\n  box-shadow: 2px 3px 5px rgba(0,0,0,0.2);\n}\n.post-card a{\n  text-decoration: none;\n}\n", ""]);
+	exports.push([module.id, "*{\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n.header{\n  width: 100%;\n  height: 80px;\n  text-align: center;\n  background-color: #00bcd4;\n  line-height: 80px;\n  font-size: 1.8em;\n}\n.header a{\n  text-decoration: none;\n  color: #fff;\n}\n.post-card{\n  width: 100%;\n  max-width: 600px;\n  color: #212121;\n  margin: 0 auto;\n  margin-top: 20px;\n  padding: 10px;\n  box-shadow: 2px 3px 5px rgba(0,0,0,0.2);\n  border-radius: 5px;\n}\n.post-card a{\n  text-decoration: none;\n}\n\n/* New.js form */\n\n.form-wrapper {\n  margin: 10px auto;\n  max-width: 500px;\n}\nform {\n  padding: 20px 40px;\n}\nlabel {\n  display: block;\n  fontSize: .9em;\n  color: rgba(0,0,0,.6);\n  padding-bottom: 10px;\n}\nselect {\n  border: 1px solid #ddd;\n  borderRadius: 5px;\n  fontSize: 1em;\n  height: 30px;\n  background-color: #fff;\n}\nselect:focus {\n  outline: none;\n}\n.field {\n  margin-bottom: 10px;\n}\n\ninput {\n  width: 100%;\n  height: 48px;\n  border: 1px solid #ddd;\n  borderRadius: 5px;\n  font-size: 1em;\n  padding: 10px;\n  box-sizing: border-box;\n}\ninput:focus {\n  border: 1px solid #00bcd4;\n  outline: none;\n}\n.actions {\n  text-align: center;\n}\nbutton {\n  width: 120px;\n  height: 36px;\n  border: none;\n  background-color: #ff4081;\n  font-size: 1em;\n  color: #fff;\n  display: inline-block;\n  margin: 20px auto 0;\n  border-radius: 20px;\n}\nbutton:hover {\n    cursor: pointer;\n}\nbutton:focus {\n    outline: none;\n}\n.cancel {\n  display: inline-block;\n  margin-left: 15px;\n  font-size: 1em;\n  color: #00bcd4;\n  opacity: .8;\n  text-decoration: none;\n}\n\n/* Home.js */\n\n.new-post {\n   display: block;\n   margin: 30px auto;\n   width: 120px;\n   height: 36px;\n   line-height: 36px;\n   text-align: center;\n   background-color: #ff4081;\n   font-size: 1em;\n   color: #fff;\n   text-decoration: none;\n   border-radius: 20px;\n }\n\n /* Post.js */\n\n .post-wrapper {\n   position: relative;\n   width: 100%;\n   min-height: 200px;\n   max-width: 600px;\n   margin: 30px auto;\n   background-color: #fff;\n   border-radius: 5px;\n   padding: 16px;\n   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;\n }\n\n .post-wrapper .title {\n   font-size: 1.3em;\n   padding-top: 10px;\n   padding-bottom: 20px;\n   text-align: center;\n }\n .post-wrapper .content {\n   font-size: 1em;\n   color: rgba(0,0,0,.8);\n }\n", ""]);
 
 	// exports
 
@@ -28759,77 +28869,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 268 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _axios = __webpack_require__(237);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var New = function (_React$Component) {
-	  _inherits(New, _React$Component);
-
-	  function New() {
-	    _classCallCheck(this, New);
-
-	    return _possibleConstructorReturn(this, (New.__proto__ || Object.getPrototypeOf(New)).apply(this, arguments));
-	  }
-
-	  _createClass(New, [{
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
-	      e.preventDefault();
-	      if (this.refs.title.value == '' || this.refs.content.value == '') {
-	        alert('输入内容不能为空');
-	      } else {
-	        _axios2.default.post('http://localhost:4000/posts', { title: this.refs.title.value, content: this.refs.content.value });
-	        this.refs.title.value = '';
-	        this.refs.content.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'form',
-	          { onSubmit: this.handleSubmit.bind(this) },
-	          _react2.default.createElement('input', { type: 'text', ref: 'title', name: 'title' }),
-	          _react2.default.createElement('input', { type: 'text', ref: 'content', name: 'content' }),
-	          _react2.default.createElement('input', { type: 'submit' })
-	        )
-	      );
-	    }
-	  }]);
-
-	  return New;
-	}(_react2.default.Component);
-
-	exports.default = New;
 
 /***/ }
 /******/ ]);
